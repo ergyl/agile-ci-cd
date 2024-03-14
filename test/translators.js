@@ -1,5 +1,5 @@
 import assert from "assert"
-import { toRobber, toNormal } from "./../src/translators.js"
+import { toRobber, toNormal, toAllsprak } from "./../src/translators.js"
 
 describe("Translators", function () {
     describe("#toRobber", function () {
@@ -21,6 +21,18 @@ describe("Translators", function () {
         it("should work for robber language", function () {
             const input = "Hejsan hoppsan!"
             assert.strictEqual(toNormal(toRobber(input)), input)
+        })
+        it("should work for allsprak language", function () {
+            const input = "Hejsan hoppsan!"
+            assert.strictEqual(toNormal(toAllsprak(input), input))
+        })
+    })
+    describe ("#toAllsprak", function() {
+        it("should work for empty string", function () {
+            assert.strictEqual(toAllsprak(""), "")
+        })
+        it("should work for simple input", function () {
+            assert.strictEqual(toAllsprak("knasig"), "asigknall")
         })
     })
 })
