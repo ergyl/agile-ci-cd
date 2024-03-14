@@ -34,14 +34,16 @@ jobs:
           path: ~/artifacts
           destination: node-build
   deploy:
-    # This is an example deploy job, not actually used by the workflow
-    docker:
-      - image: cimg/base:stable
+    executor: node/default
     steps:
-      # Replace this with steps to deploy to users
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
       - run:
-          name: deploy
-          command: '#e.g. ./deploy.sh'
+          command: npm run build
+      - run:
+          name: Deploy Netlify
+          command: npx netlify deploy --prod --dir=build
 workflows:
   build-and-test:
     jobs:
@@ -49,6 +51,6 @@ workflows:
       - build-node:
           requires:
             - test-node
-    # - deploy:
-    #     requires:
-    #       - build-node
+      - deploy:
+         requires:
+           - build-node
