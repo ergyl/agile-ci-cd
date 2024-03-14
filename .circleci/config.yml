@@ -52,5 +52,9 @@ workflows:
           requires:
             - test-node
       - deploy:
-         requires:
+          requires:
            - build-node
+          filters:
+            branches:
+              only:
+               - main
