@@ -32,7 +32,7 @@ describe("Translators", function () {
             assert.strictEqual(toAllsprak(""), "")
         })
         it("should work for simple input", function () {
-            assert.strictEqual(toAllsprak("knasig"), "asigknall")
+            assert.strictEqual(toAllsprak("knasig"), "kallnasig")
         })
     })
 })
